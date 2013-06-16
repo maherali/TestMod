@@ -7,13 +7,17 @@
 //
 
 #import "TestModTests.h"
+#import <OCMock/OCMock.h>
 
-@implementation TestModTests
+@implementation TestModTests{
+    NSString *_str;
+}
 
 - (void)setUp
 {
     [super setUp];
     
+    _str = @"";
     // Set-up code here.
 }
 
@@ -26,7 +30,11 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in TestModTests");
+	id mockString = [OCMockObject mockForClass:[NSString class]];
+	[[[mockString expect] andReturn:@"hi"] description];
+    NSLog (@"%@", [mockString description]);
+//	[mockString verify];
+
 }
 
 @end
